@@ -9,7 +9,7 @@ def calculaValorOtimo(df, listaMenores):
 		x, y = listaMenores[l].split(',')
 		x = x.replace("(", "")
 		y = y.replace(")", "")
-		z+= df[int(x), int(y)]
+		z += df[int(x), int(y)]
 	return z
 
 def tratDiagonalPrincipal(df, n):
