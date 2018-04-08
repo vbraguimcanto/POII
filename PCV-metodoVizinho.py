@@ -3,9 +3,18 @@
 import numpy as np
 from numpy import genfromtxt
 
+def calculaValorOtimo(df, listaMenores):
+	z = 0
+	for l in range(0, len(listaMenores)):
+		x, y = listaMenores[l].split(',')
+		x = x.replace("(", "")
+		y = y.replace(")", "")
+		z+= df[int(x), int(y)]
+	return z
+
 def tratDiagonalPrincipal(df, n):
-	for i in range(0,n):
-		for j in range(0,n):
+	for i in xrange(0,n):
+		for j in xrange(0,n):
 			if i == j:
 				df[i][j] = 1000000
 	return df
@@ -39,5 +48,7 @@ def main():
 	df = genfromtxt('base-custo-CSV.csv', delimiter=';')
 	n = len(df)
 	df = tratDiagonalPrincipal(df, n)
-	listaMenores, df = buscaMenoresMatriz(df, n)
+	listaMenores, df_mod = buscaMenoresMatriz(df, n)
+	z = calculaValorOtimo(df, listaMenores)
+	print 'Z* = ', z
 main()
