@@ -28,7 +28,7 @@ def buscaFibonacci(a, b, fib, n):
 	print("=" * 100)
 	print("\n")
 	k = 0
-	while(k<n):
+	while(k<(n-1)):
 		p = a + (fib[n - k - 2])/(fib[n - k])*(b - a)
 		q = a + ((fib[n - k - 1])/(fib[n - k]))*(b - a)
 		print(k,'|', a,'|', b,'|', p,'|', f(p),'|', q,'|', f(q),'|')
