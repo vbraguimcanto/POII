@@ -44,6 +44,5 @@ def main():
 	precisao = float(input("Digite o valor da precisao: "))
 	iteracoes = w(a, b, precisao)
 	fib = fibonacci(iteracoes)
-	n = len(fib) - 1
-	buscaFibonacci(a, b, fib, n)
+	buscaFibonacci(a, b, fib, len(fib) - 1)
 main()
