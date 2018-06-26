@@ -8,7 +8,7 @@ def dfdx(xk,h):
 def dfdx2(xk,h):
     return dfdx(xk,h) - dfdx(xk,-h)/2*h
 def newton(xa,xb,numeroIteracoes,erro,aproxInicial):
-	xk = aproxInicial - (f(aproxInicial)/dfdx(aproxInicial,0.01))
+	xk = aproxInicial
 	for i in range(numeroIteracoes):		
 		if (xb-xa)/xb < erro:
 			return xk
