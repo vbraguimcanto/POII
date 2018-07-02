@@ -53,7 +53,7 @@ def gradiente(x0, g, erro):
         norma = calculaNorma(xk - xkAnterior)
     k+=1
     return xk
-
+ 
 def main(): 
     x0 = Matrix([1, 1])
     erro = 0.1
