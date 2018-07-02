@@ -32,7 +32,7 @@ def newton(xa, xb, y1, y2, numeroIteracoes, erro):
         segundaDerivadaValor = float(segundaDerivada.subs(v_lambda, xAnterior))
         xk = xAnterior - (primeiraDerivadaValor/segundaDerivadaValor)
     return xk
-
+ 
 def coordenadasCiclicas(x0, erro):
     k = 1
     xk  = x0
