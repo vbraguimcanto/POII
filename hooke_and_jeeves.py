@@ -1,8 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import numpy as np
 import math as mt
 from sympy import *
 init_printing()
-x1, x2, v_lambda = symbols('x1 x2 v_lambda')
+x1, x2, v_lambda, v_lambda_chapeu = symbols('x1 x2 v_lambda v_lambda_chapeu')
 def f(x1, x2):
 	return (x1 - 2)**4 + (x1 - 2*x2)**2
 
@@ -29,6 +31,8 @@ def newton(xa, xb, y1, y2, numeroIteracoes, erro):
                 return xk
         xAnterior = xk
         primeiraDerivadaValor = float(primeiraDerivada.subs(v_lambda,xAnterior))
+        if (primeiraDerivadaValor) < erro:
+            return xk
         segundaDerivadaValor = float(segundaDerivada.subs(v_lambda, xAnterior))
         xk = xAnterior - (primeiraDerivadaValor/segundaDerivadaValor)
     return xk
@@ -56,12 +60,22 @@ def hookeAndJeeves(x0, erro):
             elif j == 1:
                 d = Matrix([0, 1])
                 yj1 = y + v_lambda*d
-                raiz = round(newton(xk[0], xk[1], yj1[0], yj1[1], 20, erro), ndigits=2)
+                raiz = round(newton(0, 5, yj1[0], yj1[1], 20, erro), ndigits=2)
                 yj1 = yj1.subs(v_lambda, raiz)
                 xkAnterior = xk
                 xk = yj1
+                # Calculando o novo d
+                d = xk - xkAnterior
+                # Calculando o novo Y
+                yj1 = xk + v_lambda_chapeu*d
+                # Resolvendo por Newton
+                raiz = round(newton(0, 5, yj1[0], yj1[1], 20, erro), ndigits=2)
+                # Substituindo o valor da raiz
+                yj1 = yj1.subs(v_lambda_chapeu, raiz)
+                xkAnterior = xk
+                xk = yj1
                 norma = calculaNorma(xk, xkAnterior)
-
+                print(xk)
     return xk
 
 def main(): 
