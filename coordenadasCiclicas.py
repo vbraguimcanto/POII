@@ -56,7 +56,7 @@ def coordenadasCiclicas(x0, erro):
             elif j == 1:
                 d = Matrix([0, 1])
                 yj1 = y + v_lambda*d
-                raiz = round(newton(xk[0], xk[1], yj1[0], yj1[1], 20, erro), ndigits=2)
+                raiz = round(newton(0, 5, yj1[0], yj1[1], 20, erro), ndigits=2)
                 yj1 = yj1.subs(v_lambda, raiz)
                 xkAnterior = xk
                 xk = yj1
